@@ -25,7 +25,7 @@ public class RequestContext {
         return new RequestContext(((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest());
     }
 
-    public String getBrowser() {
+    public String getAgent() {
         return request.getHeader("User-Agent");
     }
 

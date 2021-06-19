@@ -21,7 +21,7 @@ package org.extvos.logging.annotation.type;
  * @apiNote: 日志类型
  */
 
-public enum LogActionType {
+public enum LogAction {
     /**
      * 增删改查
      */
@@ -32,7 +32,7 @@ public enum LogActionType {
 
     private String value;
 
-    LogActionType(String value) {
+    LogAction(String value) {
         this.value = value;
     }
 

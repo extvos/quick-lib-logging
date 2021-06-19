@@ -28,13 +28,9 @@ public interface LogDispatchService {
     /**
      * 保存日志数据
      *
-     * @param username  用户
-     * @param browser   浏览器
-     * @param ip        请求IP
-     * @param joinPoint /
      * @param logObject 日志实体
      */
     @Async
-    void dispatch(String username, String browser, String ip, ProceedingJoinPoint joinPoint, LogObject logObject);
+    void dispatch(LogObject logObject);
 
 }

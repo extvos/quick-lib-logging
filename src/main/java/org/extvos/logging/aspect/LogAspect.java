@@ -16,19 +16,25 @@
 package org.extvos.logging.aspect;
 
 import org.extvos.common.utils.ThrowableUtil;
+import org.extvos.logging.annotation.Log;
 import org.extvos.logging.domain.LogObject;
 import org.extvos.logging.helpers.RequestContext;
 import org.extvos.logging.service.LogDispatchService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Method;
 
 /**
  * @author Mingcai SHEN
@@ -67,13 +73,18 @@ public class LogAspect {
         Object result;
         currentTime.set(System.currentTimeMillis());
         result = joinPoint.proceed();
-        LogObject logObject = new LogObject("INFO", System.currentTimeMillis() - currentTime.get());
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        Log l = method.getAnnotation(Log.class);
+        LogObject logObject = new LogObject(l.action().getValue(), System.currentTimeMillis() - currentTime.get());
+        logObject.setComment(l.comment());
+        logObject.setUsername(getUsername());
         currentTime.remove();
         RequestContext ctx = RequestContext.probe();
         if (logDispatchService != null) {
-            logDispatchService.dispatch(getUsername(), ctx.getBrowser(), ctx.getIpAddress(), joinPoint, logObject);
+            logDispatchService.dispatch(logObject);
         } else {
-            log.info("[{}] {} {} {} {}", getUsername(), ctx.getBrowser(), ctx.getIpAddress(), joinPoint, logObject);
+            log.info("logAround:> {}", logObject);
         }
         return result;
     }
@@ -91,16 +102,21 @@ public class LogAspect {
         logObject.setExceptionDetail(ThrowableUtil.getStackTrace(e).getBytes());
         RequestContext ctx = RequestContext.probe();
         if (logDispatchService != null) {
-            logDispatchService.dispatch(getUsername(), ctx.getBrowser(), ctx.getIpAddress(), (ProceedingJoinPoint) joinPoint, logObject);
+            logDispatchService.dispatch(logObject);
         } else {
-            log.info("[{}] {} {} {} {}", getUsername(), ctx.getBrowser(), ctx.getIpAddress(), joinPoint, logObject);
+            log.info("logAfterThrowing:> {}", logObject);
         }
 
     }
 
     public String getUsername() {
         try {
-            return ""; // SecurityUtils.getCurrentUsername();
+            Subject subject = SecurityUtils.getSubject();
+            if (null != subject && subject.isAuthenticated()) {
+                return "User:" + subject.getPrincipal().toString();
+            } else {
+                return "Session:" + subject.getSession().getId().toString();
+            }
         } catch (Exception e) {
             return "";
         }

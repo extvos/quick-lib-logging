@@ -15,7 +15,9 @@
  */
 package org.extvos.logging.annotation;
 
-import org.extvos.logging.annotation.type.LogActionType;
+import org.extvos.logging.annotation.type.LogAction;
+import org.extvos.logging.annotation.type.LogLevel;
+import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -29,7 +31,12 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Log {
-    String value() default "";
+    LogAction value() default LogAction.SELECT;
+
+    @AliasFor("value")
+    LogAction action() default LogAction.SELECT;
+
+    LogLevel level() default LogLevel.NORMAL;
 
     /**
      * 是否启用
@@ -38,5 +45,12 @@ public @interface Log {
      */
     boolean enable() default true;
 
-    LogActionType type() default LogActionType.SELECT;
+    /**
+     * Comments
+     *
+     * @return default ""
+     */
+    String comment() default "";
+
+
 }

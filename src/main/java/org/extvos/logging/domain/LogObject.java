@@ -30,9 +30,19 @@ public class LogObject implements Serializable {
     private String username;
 
     /**
+     * 日志类型
+     */
+    private String action;
+
+    /**
+     * Log Level
+     */
+    private String level;
+
+    /**
      * 描述
      */
-    private String description;
+    private String comment;
 
     /**
      * 方法名
@@ -43,11 +53,6 @@ public class LogObject implements Serializable {
      * 参数
      */
     private String params;
-
-    /**
-     * 日志类型
-     */
-    private String logType;
 
     /**
      * 请求ip
@@ -62,12 +67,12 @@ public class LogObject implements Serializable {
     /**
      * 浏览器
      */
-    private String browser;
+    private String agent;
 
     /**
      * 请求耗时
      */
-    private Long time;
+    private Long duration;
 
     /**
      * 异常详细
@@ -77,12 +82,11 @@ public class LogObject implements Serializable {
     /**
      * 创建日期
      */
-//    @CreationTimestamp
-    private Timestamp createTime;
+    private Timestamp created;
 
-    public LogObject(String logType, Long time) {
-        this.logType = logType;
-        this.time = time;
+    public LogObject(String action, Long duration) {
+        this.action = action;
+        this.duration = duration;
     }
 
     public String getUsername() {
@@ -93,12 +97,12 @@ public class LogObject implements Serializable {
         this.username = username;
     }
 
-    public String getDescription() {
-        return description;
+    public String getComment() {
+        return comment;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public String getMethod() {
@@ -117,12 +121,20 @@ public class LogObject implements Serializable {
         this.params = params;
     }
 
-    public String getLogType() {
-        return logType;
+    public String getAction() {
+        return action;
     }
 
-    public void setLogType(String logType) {
-        this.logType = logType;
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getRequestIp() {
@@ -141,20 +153,20 @@ public class LogObject implements Serializable {
         this.address = address;
     }
 
-    public String getBrowser() {
-        return browser;
+    public String getAgent() {
+        return agent;
     }
 
-    public void setBrowser(String browser) {
-        this.browser = browser;
+    public void setAgent(String agent) {
+        this.agent = agent;
     }
 
-    public Long getTime() {
-        return time;
+    public Long getDuration() {
+        return duration;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
+    public void setDuration(Long duration) {
+        this.duration = duration;
     }
 
     public byte[] getExceptionDetail() {
@@ -165,11 +177,11 @@ public class LogObject implements Serializable {
         this.exceptionDetail = exceptionDetail;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
+    public Timestamp getCreated() {
+        return created;
     }
 
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
+    public void setCreated(Timestamp created) {
+        this.created = created;
     }
 }
