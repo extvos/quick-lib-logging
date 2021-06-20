@@ -22,7 +22,7 @@ import org.springframework.scheduling.annotation.Async;
 
 /**
  * @author Mingcai SHEN
- * @date 2018-11-24
+ * 
  */
 public interface LogDispatchService {
     /**

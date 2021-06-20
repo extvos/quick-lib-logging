@@ -20,7 +20,7 @@ import java.sql.Timestamp;
 
 /**
  * @author Mingcai SHEN
- * @date 2018-11-24
+ * 
  */
 public class LogObject implements Serializable {
 

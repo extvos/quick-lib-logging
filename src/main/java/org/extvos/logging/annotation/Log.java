@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
 
 /**
  * @author Mingcai SHEN
- * @date 2018-11-24
+ * 
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

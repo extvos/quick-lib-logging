@@ -17,7 +17,7 @@ package org.extvos.logging.annotation.type;
 
 /**
  * @author Mingcai SHEN
- * @date: 2020/6/11 19:47
+ * 
  * @apiNote: 日志类型
  */
 

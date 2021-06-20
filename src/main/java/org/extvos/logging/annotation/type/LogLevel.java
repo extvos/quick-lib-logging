@@ -1,7 +1,7 @@
 package org.extvos.logging.annotation.type;
 
 /**
- * @author shenmc
+ * @author Mingcai SHEN
  */
 
 public enum LogLevel {
