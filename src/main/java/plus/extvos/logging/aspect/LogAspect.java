@@ -13,13 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.extvos.logging.aspect;
+package plus.extvos.logging.aspect;
 
-import org.extvos.common.utils.ThrowableUtil;
-import org.extvos.logging.annotation.Log;
-import org.extvos.logging.domain.LogObject;
-import org.extvos.logging.helpers.RequestContext;
-import org.extvos.logging.service.LogDispatchService;
+import plus.extvos.common.utils.ThrowableUtil;
+import plus.extvos.logging.annotation.Log;
+import plus.extvos.logging.domain.LogObject;
+import plus.extvos.logging.helpers.RequestContext;
+import plus.extvos.logging.service.LogDispatchService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.aspectj.lang.JoinPoint;
@@ -58,7 +58,7 @@ public class LogAspect {
     /**
      * 配置切入点
      */
-    @Pointcut("@annotation(org.extvos.logging.annotation.Log)")
+    @Pointcut("@annotation(plus.extvos.logging.annotation.Log)")
     public void logPointcut() {
         // 该方法无方法体,主要为了让同类中其他方法使用此切入点
     }

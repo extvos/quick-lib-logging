@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.extvos.logging.annotation.type;
+package plus.extvos.logging.annotation.type;
 
 /**
  * @author Mingcai SHEN

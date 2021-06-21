@@ -13,9 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.extvos.logging.service;
+package plus.extvos.logging.service;
 
-import org.extvos.logging.domain.LogObject;
+import plus.extvos.logging.domain.LogObject;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.scheduling.annotation.Async;
 

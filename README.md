@@ -4,8 +4,8 @@
 
 ## 注解
 
-- `org.extvos.logging.annotation.Log`
+- `plus.extvos.logging.annotation.Log`
 
 ## 接口
 
-- `org.extvos.logging.service.LogDispatchService`
+- `plus.extvos.logging.service.LogDispatchService`

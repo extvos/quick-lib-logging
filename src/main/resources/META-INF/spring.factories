@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.extvos.logging.config.LoggingAutoConfigure
+plus.extvos.logging.config.LoggingAutoConfigure

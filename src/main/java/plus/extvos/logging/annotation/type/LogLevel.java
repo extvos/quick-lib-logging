@@ -1,4 +1,4 @@
-package org.extvos.logging.annotation.type;
+package plus.extvos.logging.annotation.type;
 
 /**
  * @author Mingcai SHEN

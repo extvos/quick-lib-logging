@@ -1,10 +1,10 @@
-package org.extvos.logging.config;
+package plus.extvos.logging.config;
 
 import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author Mingcai SHEN
  */
-@ComponentScan(basePackages = "org.extvos.logging")
+@ComponentScan(basePackages = "plus.extvos.logging")
 public class LoggingAutoConfigure {
 }

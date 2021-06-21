@@ -13,10 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.extvos.logging.annotation;
+package plus.extvos.logging.annotation;
 
-import org.extvos.logging.annotation.type.LogAction;
-import org.extvos.logging.annotation.type.LogLevel;
+import plus.extvos.logging.annotation.type.LogAction;
+import plus.extvos.logging.annotation.type.LogLevel;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.ElementType;

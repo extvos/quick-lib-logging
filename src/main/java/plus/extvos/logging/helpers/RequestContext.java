@@ -1,4 +1,4 @@
-package org.extvos.logging.helpers;
+package plus.extvos.logging.helpers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
