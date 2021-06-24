@@ -20,7 +20,6 @@ import java.sql.Timestamp;
 
 /**
  * @author Mingcai SHEN
- * 
  */
 public class LogObject implements Serializable {
 

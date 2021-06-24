@@ -15,9 +15,9 @@
  */
 package plus.extvos.logging.annotation;
 
+import org.springframework.core.annotation.AliasFor;
 import plus.extvos.logging.annotation.type.LogAction;
 import plus.extvos.logging.annotation.type.LogLevel;
-import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -26,7 +26,6 @@ import java.lang.annotation.Target;
 
 /**
  * @author Mingcai SHEN
- * 
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

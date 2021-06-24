@@ -15,11 +15,6 @@
  */
 package plus.extvos.logging.aspect;
 
-import plus.extvos.common.utils.ThrowableUtil;
-import plus.extvos.logging.annotation.Log;
-import plus.extvos.logging.domain.LogObject;
-import plus.extvos.logging.helpers.RequestContext;
-import plus.extvos.logging.service.LogDispatchService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.aspectj.lang.JoinPoint;
@@ -33,12 +28,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import plus.extvos.common.utils.ThrowableUtil;
+import plus.extvos.logging.annotation.Log;
+import plus.extvos.logging.domain.LogObject;
+import plus.extvos.logging.helpers.RequestContext;
+import plus.extvos.logging.service.LogDispatchService;
 
 import java.lang.reflect.Method;
 
 /**
  * @author Mingcai SHEN
- * 
  */
 @Component
 @Aspect
