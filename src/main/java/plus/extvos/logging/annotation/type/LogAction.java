@@ -17,7 +17,6 @@ package plus.extvos.logging.annotation.type;
 
 /**
  * @author Mingcai SHEN
- * 
  * @apiNote: 日志类型
  */
 

@@ -15,14 +15,12 @@
  */
 package plus.extvos.logging.service;
 
-import plus.extvos.logging.domain.LogObject;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.scheduling.annotation.Async;
+import plus.extvos.logging.domain.LogObject;
 
 
 /**
  * @author Mingcai SHEN
- * 
  */
 public interface LogDispatchService {
     /**
