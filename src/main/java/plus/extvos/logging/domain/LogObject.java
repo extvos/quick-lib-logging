@@ -15,6 +15,8 @@
  */
 package plus.extvos.logging.domain;
 
+import plus.extvos.logging.annotation.Log;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -61,7 +63,7 @@ public class LogObject implements Serializable {
     /**
      * 地址
      */
-    private String address;
+    private String requestUri;
 
     /**
      * 浏览器
@@ -86,6 +88,13 @@ public class LogObject implements Serializable {
     public LogObject(String action, Long duration) {
         this.action = action;
         this.duration = duration;
+    }
+
+    public LogObject(Log l){
+        action = l.action().getValue();
+        level = l.level().getValue();
+        comment = l.comment();
+
     }
 
     public String getUsername() {
@@ -144,12 +153,12 @@ public class LogObject implements Serializable {
         this.requestIp = requestIp;
     }
 
-    public String getAddress() {
-        return address;
+    public String getRequestUri() {
+        return requestUri;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setRequestUri(String requestUri) {
+        this.requestUri = requestUri;
     }
 
     public String getAgent() {
