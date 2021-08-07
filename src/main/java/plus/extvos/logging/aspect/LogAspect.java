@@ -81,12 +81,12 @@ public class LogAspect {
         logObject.setCreated(new Timestamp(System.currentTimeMillis()));
         logObject.setComment(l.comment());
         logObject.setUsername(getUsername());
-        currentTime.remove();
         RequestContext ctx = RequestContext.probe();
         logObject.setAgent(ctx.getAgent());
         logObject.setRequestIp(ctx.getIpAddress());
         logObject.setRequestUri(ctx.getRequestURI());
         logObject.setMethod(signature.getDeclaringTypeName() + "::" + method.getName());
+        currentTime.remove();
         if (logDispatchService != null) {
             logDispatchService.dispatch(logObject);
         } else {
@@ -103,9 +103,9 @@ public class LogAspect {
      */
     @AfterThrowing(pointcut = "logPointcut()", throwing = "e")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        currentTime.remove();
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
+        currentTime.set(System.currentTimeMillis());
         Log l = method.getAnnotation(Log.class);
         LogObject logObject = new LogObject(l);
         logObject.setAction("ERROR");
@@ -119,6 +119,7 @@ public class LogAspect {
         logObject.setRequestIp(ctx.getIpAddress());
         logObject.setRequestUri(ctx.getRequestURI());
         logObject.setMethod(signature.getDeclaringTypeName() + "::" + method.getName());
+        currentTime.remove();
         if (logDispatchService != null) {
             logDispatchService.dispatch(logObject);
         } else {
