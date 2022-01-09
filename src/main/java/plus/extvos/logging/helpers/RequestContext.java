@@ -29,6 +29,10 @@ public class RequestContext {
         return request.getHeader("User-Agent");
     }
 
+    public String getRequestURI() {
+        return request.getRequestURI();
+    }
+
     public String getIpAddress() {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0) {

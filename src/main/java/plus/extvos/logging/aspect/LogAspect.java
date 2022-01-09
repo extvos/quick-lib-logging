@@ -35,6 +35,7 @@ import plus.extvos.logging.helpers.RequestContext;
 import plus.extvos.logging.service.LogDispatchService;
 
 import java.lang.reflect.Method;
+import java.sql.Timestamp;
 
 /**
  * @author Mingcai SHEN
@@ -75,11 +76,17 @@ public class LogAspect {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         Log l = method.getAnnotation(Log.class);
-        LogObject logObject = new LogObject(l.action().getValue(), System.currentTimeMillis() - currentTime.get());
+        LogObject logObject = new LogObject(l);
+        logObject.setDuration(System.currentTimeMillis() - currentTime.get());
+        logObject.setCreated(new Timestamp(System.currentTimeMillis()));
         logObject.setComment(l.comment());
         logObject.setUsername(getUsername());
-        currentTime.remove();
         RequestContext ctx = RequestContext.probe();
+        logObject.setAgent(ctx.getAgent());
+        logObject.setRequestIp(ctx.getIpAddress());
+        logObject.setRequestUri(ctx.getRequestURI());
+        logObject.setMethod(signature.getDeclaringTypeName() + "::" + method.getName());
+        currentTime.remove();
         if (logDispatchService != null) {
             logDispatchService.dispatch(logObject);
         } else {
@@ -96,10 +103,23 @@ public class LogAspect {
      */
     @AfterThrowing(pointcut = "logPointcut()", throwing = "e")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        LogObject logObject = new LogObject("ERROR", System.currentTimeMillis() - currentTime.get());
-        currentTime.remove();
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        currentTime.set(System.currentTimeMillis());
+        Log l = method.getAnnotation(Log.class);
+        LogObject logObject = new LogObject(l);
+        logObject.setAction("ERROR");
+        logObject.setDuration(System.currentTimeMillis() - currentTime.get());
         logObject.setExceptionDetail(ThrowableUtil.getStackTrace(e).getBytes());
         RequestContext ctx = RequestContext.probe();
+        logObject.setCreated(new Timestamp(System.currentTimeMillis()));
+        logObject.setComment(l.comment());
+        logObject.setUsername(getUsername());
+        logObject.setAgent(ctx.getAgent());
+        logObject.setRequestIp(ctx.getIpAddress());
+        logObject.setRequestUri(ctx.getRequestURI());
+        logObject.setMethod(signature.getDeclaringTypeName() + "::" + method.getName());
+        currentTime.remove();
         if (logDispatchService != null) {
             logDispatchService.dispatch(logObject);
         } else {

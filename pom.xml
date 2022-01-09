@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <springboot.version>2.4.2</springboot.version>
+        <springboot.version>2.5.8</springboot.version>
         <log4jdbc.version>1.16</log4jdbc.version>
     </properties>
     <dependencies>
@@ -24,13 +24,30 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${springboot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${springboot.version}</version>
+            <optional>true</optional>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
-            <version>${springboot.version}</version>
+            <version>2.6.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
@@ -38,6 +55,7 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.6</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -59,8 +77,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.4.4</version>
+                <version>${springboot.version}</version>
             </plugin>
+
         </plugins>
     </build>
 
@@ -73,5 +92,34 @@
         </repository>
     </distributionManagement>
 
+
+    <licenses>
+        <license>
+            <name>GNU GPL v3</name>
+            <url>https://www.gnu.org/licenses/gpl.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Mingcai SHEN</name>
+            <email>archsh@gmail.com</email>
+            <organization>Shenzhen Cygnux Technologies Ltd.</organization>
+            <organizationUrl>https://www.cygnux.cn</organizationUrl>
+        </developer>
+    </developers>
+
+    <organization>
+        <name>Shenzhen Cygnux Technologies Ltd.</name>
+        <url>https://www.cygnux.cn</url>
+    </organization>
+
+    <scm>
+        <url>https://github.com/extvos/quick-lib-logging.git</url>
+        <connection>scm:git:git://github.com/extvos/quick-lib-logging.git</connection>
+        <developerConnection>scm:git:git@github.com:extvos/quick-lib-logging.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
 </project>
