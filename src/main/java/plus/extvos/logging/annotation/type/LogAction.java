@@ -17,7 +17,7 @@ package plus.extvos.logging.annotation.type;
 
 /**
  * @author Mingcai SHEN
- * @apiNote: 日志类型
+ * 日志类型
  */
 
 public enum LogAction {
