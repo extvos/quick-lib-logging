@@ -37,6 +37,8 @@ public @interface Log {
 
     LogLevel level() default LogLevel.NORMAL;
 
+    String model() default "";
+
     /**
      * 是否启用
      *

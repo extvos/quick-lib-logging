@@ -51,6 +51,11 @@ public class LogObject implements Serializable {
     private String method;
 
     /**
+     * 数据模型
+     */
+    private String model;
+
+    /**
      * 参数
      */
     private String params;
@@ -191,5 +196,13 @@ public class LogObject implements Serializable {
 
     public void setCreated(Timestamp created) {
         this.created = created;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }

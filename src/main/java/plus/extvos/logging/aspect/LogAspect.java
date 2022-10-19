@@ -81,6 +81,11 @@ public class LogAspect {
         logObject.setCreated(new Timestamp(System.currentTimeMillis()));
         logObject.setComment(l.comment());
         logObject.setUsername(getUsername());
+        if(l.model().isEmpty()){
+            logObject.setModel(method.getClass().getName());
+        } else {
+            logObject.setModel(l.model());
+        }
         RequestContext ctx = RequestContext.probe();
         logObject.setAgent(ctx.getAgent());
         logObject.setRequestIp(ctx.getIpAddress());
