@@ -90,6 +90,7 @@ public class LogAspect {
         logObject.setAgent(ctx.getAgent());
         logObject.setRequestIp(ctx.getIpAddress());
         logObject.setRequestUri(ctx.getRequestURI());
+        logObject.setParams(ctx.getParams());
         logObject.setMethod(signature.getDeclaringTypeName() + "::" + method.getName());
         currentTime.remove();
         if (logDispatchService != null) {
@@ -113,7 +114,6 @@ public class LogAspect {
         currentTime.set(System.currentTimeMillis());
         Log l = method.getAnnotation(Log.class);
         LogObject logObject = new LogObject(l);
-        logObject.setAction("ERROR");
         logObject.setDuration(System.currentTimeMillis() - currentTime.get());
         logObject.setExceptionDetail(ThrowableUtil.getStackTrace(e).getBytes());
         RequestContext ctx = RequestContext.probe();
@@ -123,6 +123,7 @@ public class LogAspect {
         logObject.setAgent(ctx.getAgent());
         logObject.setRequestIp(ctx.getIpAddress());
         logObject.setRequestUri(ctx.getRequestURI());
+        logObject.setParams(ctx.getParams());
         logObject.setMethod(signature.getDeclaringTypeName() + "::" + method.getName());
         currentTime.remove();
         if (logDispatchService != null) {

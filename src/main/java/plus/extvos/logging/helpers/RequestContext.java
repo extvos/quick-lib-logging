@@ -33,6 +33,10 @@ public class RequestContext {
         return request.getRequestURI();
     }
 
+    public String getParams() {
+        return request.getQueryString();
+    }
+
     public String getIpAddress() {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0) {
