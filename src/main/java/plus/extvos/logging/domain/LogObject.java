@@ -15,6 +15,7 @@
  */
 package plus.extvos.logging.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import plus.extvos.logging.annotation.Log;
 
 import java.io.Serializable;
@@ -88,6 +89,7 @@ public class LogObject implements Serializable {
     /**
      * 创建日期
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     private Timestamp created;
 
     public LogObject(String action, Long duration) {
