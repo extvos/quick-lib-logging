@@ -6,7 +6,7 @@
 
     <groupId>io.github.extvos</groupId>
     <artifactId>quick-lib-logging</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <name>quick-lib-logging</name>
     <description>日志库</description>
     <url>https://github.com/extvos/quickstart</url>
@@ -16,7 +16,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <springboot.version>2.5.8</springboot.version>
+        <springboot.version>2.5.14</springboot.version>
         <log4jdbc.version>1.16</log4jdbc.version>
     </properties>
     <dependencies>
@@ -62,12 +62,12 @@
         <dependency>
             <groupId>io.github.extvos</groupId>
             <artifactId>quick-lib-common</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
-            <version>1.4.0</version>
+            <version>1.10.0</version>
             <scope>compile</scope>
         </dependency>
 
