@@ -82,7 +82,7 @@ public class LogAspect {
         logObject.setComment(l.comment());
         logObject.setUsername(getUsername());
         if(l.model().isEmpty()){
-            logObject.setModel(method.getClass().getName());
+            logObject.setModel(method.getDeclaringClass().getName());
         } else {
             logObject.setModel(l.model());
         }
