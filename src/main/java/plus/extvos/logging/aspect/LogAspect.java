@@ -149,7 +149,7 @@ public class LogAspect {
             if (null != subject && subject.isAuthenticated()) {
                 return "User:" + subject.getPrincipal().toString();
             } else {
-                return "Session:" + subject.getSession().getId().toString();
+                return "Session:" + (subject != null && subject.getSession() != null ? subject.getSession().getId().toString() : "");
             }
         } catch (Exception e) {
             return "";
