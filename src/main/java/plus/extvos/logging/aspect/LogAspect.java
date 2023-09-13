@@ -15,6 +15,7 @@
  */
 package plus.extvos.logging.aspect;
 
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.aspectj.lang.JoinPoint;
@@ -28,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import plus.extvos.common.Result;
 import plus.extvos.common.utils.ThrowableUtil;
 import plus.extvos.logging.annotation.Log;
 import plus.extvos.logging.domain.LogObject;
@@ -35,6 +37,7 @@ import plus.extvos.logging.helpers.RequestContext;
 import plus.extvos.logging.service.LogDispatchService;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.sql.Timestamp;
 
 /**
@@ -81,8 +84,14 @@ public class LogAspect {
         logObject.setCreated(new Timestamp(System.currentTimeMillis()));
         logObject.setComment(l.comment());
         logObject.setUsername(getUsername());
-        if(l.model().isEmpty()){
-            logObject.setModel(method.getDeclaringClass().getName());
+        if (l.comment() == null || l.comment().isEmpty()) {
+            ApiOperation api = method.getAnnotation(ApiOperation.class);
+            if (null != api) {
+                logObject.setComment(api.value());
+            }
+        }
+        if (l.model().isEmpty()) {
+            logObject.setModel(signature.getDeclaringType().getTypeName());
         } else {
             logObject.setModel(l.model());
         }

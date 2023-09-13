@@ -39,13 +39,13 @@ public class RequestContext {
 
     public String getIpAddress() {
         String ip = request.getHeader("x-forwarded-for");
-        if (ip == null || ip.length() == 0) {
+        if (ip == null || ip.isEmpty()) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0) {
+        if (ip == null || ip.isEmpty()) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (ip == null || ip.length() == 0) {
+        if (ip == null || ip.isEmpty()) {
             ip = request.getRemoteAddr();
         }
         if (ip == null) {

@@ -16,6 +16,8 @@
 package plus.extvos.logging.service;
 
 import org.springframework.scheduling.annotation.Async;
+import plus.extvos.logging.annotation.type.LogAction;
+import plus.extvos.logging.annotation.type.LogLevel;
 import plus.extvos.logging.domain.LogObject;
 
 
@@ -30,5 +32,14 @@ public interface LogDispatchService {
      */
     @Async
     void dispatch(LogObject logObject);
+
+    default void dispatch(LogAction action, LogLevel level, String model, String method, String comment) {
+        LogObject log = new LogObject(action.name(), 0L);
+        log.setLevel(level.name());
+        log.setComment(comment);
+        log.setModel(model);
+        log.setMethod(method);
+        dispatch(log);
+    }
 
 }
